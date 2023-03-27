@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios'
 
 const API = 'http://localhost:8000/games'
@@ -25,21 +25,23 @@ interface Games {
 
 }
 
-const state = reactive({
-  games: [] as Games[]
-})
+
+
+const games = ref<Games[]>([])
+
 
 const search = async() => {
-  state.games = []
+  games.value = []
   const getResponse = await axios.get<Games[]>(API + '/' + searchInput.value)
-  state.games = getResponse.data
+  const game = computed(() => games.value = getResponse.data) 
+  games.value = game.value
 
 }
 
 
 onMounted(async () => {
   const gamesResponse = await axios.get<Games[]>(API)
-  state.games = gamesResponse.data
+  games.value = gamesResponse.data
 })
 
 </script>
