@@ -107,7 +107,7 @@ onMounted(async () => {
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" v-for="game in games" :key="game.id">
+          <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" :class="game.id % 2 == 0 ? 'bg-white dark:bg-gray-900 dark:border-gray-700' : 'bg-gray-50 dark:bg-gray-800 dark:border-gray-700' " v-for="game in games" :key="game.id">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {{ game.Name }}
             </th>
