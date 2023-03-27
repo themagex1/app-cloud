@@ -3,7 +3,7 @@
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios'
 import GameForm from './components/GameForm.vue';
-
+import EditGame from './components/EditGame.vue';
 const API = 'http://localhost:8000/games'
 
 //style
@@ -36,6 +36,7 @@ interface Games {
 const games = ref<Games[]>([])
 
 const modalButton = ref(false)
+const editModal = ref(false)
 
 const search = async () => {
   games.value = []
@@ -155,15 +156,20 @@ onMounted(async () => {
               {{ game.Global_Sales }}
             </td>
             <td class="px-6 py-4">
-              <div @click="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</div>
+              <div @click="editModal = true" pro class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</div>
             </td>
+
+            <div v-if="editModal">
+              <EditGame :game=game @showEditModal="editModal = false"/>
+            </div>
           </tr>
 
-
+          
         </tbody>
       </table>
+      
     </div>
-
+    
   </div>
 </template>
 
