@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import axios from 'axios'
 
 const API = 'http://localhost:8000/games'
@@ -12,11 +12,11 @@ const searchInput = ref('')
 
 interface Games {
   id: number,
-  name: string,
-  platform: string,
-  year: string,
-  genre: string,
-  publisher: string,
+  Name: string,
+  Platform: string,
+  Year: string,
+  Genre: string,
+  Publisher: string,
   NA_Sales: number,
   EU_Sales: number,
   JP_Sales: number,
@@ -25,20 +25,21 @@ interface Games {
 
 }
 
-
-const games = ref<Games[]>([])
+const state = reactive({
+  games: [] as Games[]
+})
 
 const search = async() => {
-  games.value = []
-  const getResponse = await axios.get<Games[]>(API)
-  games.value = getResponse.data
+  state.games = []
+  const getResponse = await axios.get<Games[]>(API + '/' + searchInput.value)
+  state.games = getResponse.data
 
 }
 
 
 onMounted(async () => {
   const gamesResponse = await axios.get<Games[]>(API)
-  games.value = gamesResponse.data
+  state.games = gamesResponse.data
 })
 
 </script>
@@ -106,19 +107,19 @@ onMounted(async () => {
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" v-for="game in games" :key="game.id">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ game.name }}
+              {{ game.Name }}
             </th>
             <td class="px-6 py-4">
-              {{ game.platform }}
+              {{ game.Platform }}
             </td>
             <td class="px-6 py-4">
-              {{ game.year }}
+              {{ game.Year }}
             </td>
             <td class="px-6 py-4">
-              {{ game.genre }}
+              {{ game.Genre }}
             </td>
             <td class="px-6 py-4">
-              {{ game.publisher }}
+              {{ game.Publisher }}
             </td>
             <td class="px-6 py-4">
               {{ game.NA_Sales }}
