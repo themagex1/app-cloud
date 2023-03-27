@@ -107,7 +107,7 @@ onMounted(async () => {
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" :class="game.id % 2 == 0 ? 'bg-white dark:bg-gray-900 dark:border-gray-700' : 'bg-gray-50 dark:bg-gray-800 dark:border-gray-700' " v-for="game in games" :key="game.id">
+          <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" :class="[game.id % 2 == 0 ? 'bg-white dark:bg-gray-900 dark:border-gray-700' : 'bg-gray-50 dark:bg-gray-800 dark:border-gray-700' ]" v-for="game in games" :key="game.id">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {{ game.Name }}
             </th>
@@ -142,41 +142,7 @@ onMounted(async () => {
               <div @click="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</div>
             </td>
           </tr>
-          <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              Microsoft Surface Pro
-            </th>
-            <td class="px-6 py-4">
-              White
-            </td>
-            <td class="px-6 py-4">
-              Laptop PC
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              $1999
-            </td>
-            <td class="px-6 py-4">
-              <div @click="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</div>
-            </td>
-          </tr>
+          
 
         </tbody>
       </table>
