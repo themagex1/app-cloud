@@ -54,7 +54,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mt-10">
+  <div class="mt-10 bg-gray-600">
     <div class="flex">
       <div class="searchbar w-1/2 mb-4 ml-10">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
