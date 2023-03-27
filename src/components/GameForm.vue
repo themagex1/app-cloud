@@ -16,27 +16,25 @@ const jpSales = ref(0)
 const otherSales = ref(0)
 const globalSales = ref(0)
 
-const game = reactive({
-    Name: name.value,
-    Platform: platform.value,
-    Year: year.value,
-    Genre: genre.value,
-    Publisher: publisher.value,
-    NA_Sales: naSales.value,
-    EU_Sales: euSales.value,
-    JP_Sales: jpSales.value,
-    Other_Sales: otherSales.value,
-    Global_Sales: globalSales.value,
-})
 
 
 
-const postGame = async() => {
-    
-     await axios.post(API, {
-        game
+
+const postGame = async () => {
+
+    await axios.post(API, {
+        Name: name.value,
+        Platform: platform.value,
+        Year: year.value,
+        Genre: genre.value,
+        Publisher: publisher.value,
+        NA_Sales: naSales.value,
+        EU_Sales: euSales.value,
+        JP_Sales: jpSales.value,
+        Other_Sales: otherSales.value,
+        Global_Sales: globalSales.value,
     })
-    console.log(game)
+    
 
 }
 </script>
@@ -133,7 +131,8 @@ const postGame = async() => {
                         placeholder="Type Global_Sales" v-model="globalSales">
                 </div>
                 <button @click="postGame"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send game</button>
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send
+                    game</button>
             </div>
 
 
