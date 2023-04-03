@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-const API = 'http://localhost:8000/games'
+const API = import.meta.env.VITE_BASE_URL
 
 const props = defineProps<{
     game: {

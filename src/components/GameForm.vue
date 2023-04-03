@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 
-const API = 'http://localhost:8000/games'
+const API = import.meta.env.VITE_BASE_URL
 
 //form 
 const name = ref('')

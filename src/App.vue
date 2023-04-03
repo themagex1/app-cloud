@@ -4,7 +4,7 @@ import { ref, onMounted, computed } from 'vue';
 import axios from 'axios'
 import GameForm from './components/GameForm.vue';
 import EditGame from './components/EditGame.vue';
-const API = 'http://localhost:8000/games'
+const API = import.meta.env.VITE_BASE_URL
 
 //style
 
