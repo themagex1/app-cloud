@@ -7,16 +7,16 @@ const API = import.meta.env.VITE_BASE_URL
 const props = defineProps<{
     game: {
         id: number,
-        Name: string,
-        Platform: string,
-        Year: string,
-        Genre: string,
-        Publisher: string,
-        NA_Sales: number,
-        EU_Sales: number,
-        JP_Sales: number,
-        Other_Sales: number,
-        Global_Sales: number,
+        name: string,
+        platform: string,
+        year: string,
+        genre: string,
+        publisher: string,
+        na_sales: number,
+        eu_sales: number,
+        jp_sales: number,
+        other_sales: number,
+        global_sales: number,
     }
 }>()
 
