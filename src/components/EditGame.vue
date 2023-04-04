@@ -20,7 +20,7 @@ const props = defineProps<{
     }
 }>()
 
-const name = ref(props.game.Name || '')
+const name = ref(props.game.name || '')
 const platform = ref('')
 const year = ref('')
 const genre = ref('')
