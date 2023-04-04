@@ -19,16 +19,16 @@ const globalSales = ref(0)
 const postGame = async () => {
 
     await axios.post(API, {
-        Name: name.value,
-        Platform: platform.value,
-        Year: year.value,
-        Genre: genre.value,
-        Publisher: publisher.value,
-        NA_Sales: naSales.value,
-        EU_Sales: euSales.value,
-        JP_Sales: jpSales.value,
-        Other_Sales: otherSales.value,
-        Global_Sales: globalSales.value,
+        name: name.value,
+        platform: platform.value,
+        year: year.value,
+        genre: genre.value,
+        publisher: publisher.value,
+        na_sales: naSales.value,
+        eu_sales: euSales.value,
+        jp_sales: jpSales.value,
+        other_sales: otherSales.value,
+        global_sales: globalSales.value,
     })
 
 

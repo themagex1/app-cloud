@@ -18,16 +18,16 @@ const searchInput = ref('')
 
 interface Games {
   id: number,
-  Name: string,
-  Platform: string,
-  Year: string,
-  Genre: string,
-  Publisher: string,
-  NA_Sales: number,
-  EU_Sales: number,
-  JP_Sales: number,
-  Other_Sales: number,
-  Global_Sales: number
+  name: string,
+  platform: string,
+  year: string,
+  genre: string,
+  publisher: string,
+  na_sales: number,
+  eu_sales: number,
+  jp_sales: number,
+  other_sales: number,
+  global_sales: number
 
 }
 
@@ -127,34 +127,34 @@ onMounted(async () => {
         <tbody>
           <tr :class="[(game.id % 2 == 0) ? evenClass : oddClass]" v-for="game in games" :key="game.id">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ game.Name }}
+              {{ game.name }}
             </th>
             <td class="px-6 py-4">
-              {{ game.Platform }}
+              {{ game.platform }}
             </td>
             <td class="px-6 py-4">
-              {{ game.Year }}
+              {{ game.year }}
             </td>
             <td class="px-6 py-4">
-              {{ game.Genre }}
+              {{ game.genre }}
             </td>
             <td class="px-6 py-4">
-              {{ game.Publisher }}
+              {{ game.publisher }}
             </td>
             <td class="px-6 py-4">
-              {{ game.NA_Sales }}
+              {{ game.na_sales }}
             </td>
             <td class="px-6 py-4">
-              {{ game.EU_Sales }}
+              {{ game.eu_sales }}
             </td>
             <td class="px-6 py-4">
-              {{ game.JP_Sales }}
+              {{ game.jp_sales }}
             </td>
             <td class="px-6 py-4">
-              {{ game.Other_Sales }}
+              {{ game.other_sales }}
             </td>
             <td class="px-6 py-4">
-              {{ game.Global_Sales }}
+              {{ game.global_sales }}
             </td>
             <td class="px-6 py-4">
               <div @click="editModal = true" pro class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</div>
