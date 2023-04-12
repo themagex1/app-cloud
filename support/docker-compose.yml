@@ -1,0 +1,71 @@
+version: '3.8' 
+
+services:   
+  db:
+    container_name: postgresDB
+    image: postgres:15.1
+    restart: always
+    environment:
+      - POSTGRES_USER: fastAPIuser
+      - POSTGRES_PASSWORD: fastAPI
+      - POSTGRES_DB: CloudDB
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      cloudNet:
+        ipv4_address: 192.168.0.2
+
+  backend:
+    container_name: CloudBackend
+    build: 
+      dockerfile: Dockerfile
+      context: ../backend
+    ports:
+      - 5000:5000
+    environment:
+      DATABASE_IP: 192.168.0.2
+      FRONTEND_IP: 192.168.0.4
+    depends_on:
+      - db
+    networks:
+      cloudNet:
+        ipv4_address: 192.168.0.3
+
+  frontend:
+    container_name: CloudFrontend
+    stdin_open: true
+    build: 
+      dockerfile: Dockerfile
+      context: ../frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    environment:
+      VITE_BASE_URL: 192.168.0.3/games
+    networks:
+      cloudNet:
+        ipv4_address: 192.168.0.4
+      
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
+    networks:
+      cloudNet:
+        ipv4_address: 192.168.0.5
+
+volumes:
+  postgres:
+
+networks:
+  cloudNet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/28
