@@ -6,9 +6,9 @@ services:
     image: postgres:15.1
     restart: always
     environment:
-      - POSTGRES_USER: fastAPIuser
-      - POSTGRES_PASSWORD: fastAPI
-      - POSTGRES_DB: CloudDB
+      POSTGRES_USER: fastAPIuser
+      POSTGRES_PASSWORD: fastAPI
+      POSTGRES_DB: CloudDB
     ports:
       - '5432:5432'
     volumes:
@@ -41,7 +41,7 @@ services:
       dockerfile: Dockerfile
       context: ../frontend
     ports:
-      - 3000:3000
+      - 80:51754
     depends_on:
       - backend
     environment:
