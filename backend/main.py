@@ -12,8 +12,11 @@ app = FastAPI()
 front = os.environ.get('FRONTEND_IP',"localhost")
 origins = [
     "http://" + front,
-    "http://"+front+":8080",
-    "http://"+front+":5173",
+    "http://"+front+":80",
+    "http://"+front+":8000",
+    "http://localhost",
+    "http://localhost:80",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
@@ -54,4 +57,4 @@ def put_game(game:schemas.VideoGame, db: Session = Depends(get_db)):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=5000, log_level="info")
+    uvicorn.run(app, port=8000,host='0.0.0.0', log_level="info")
