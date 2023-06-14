@@ -12,7 +12,7 @@ services:
       - '5432:5432'
     volumes:
       - ./postgres:/var/lib/postgresql/data
-    command: ["bash", "-c", "apt-get update; apt-get install curl; curl -o  /tmp/vgsales.csv https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/vgsales.csv; curl -o /docker-entrypoint-initdb.d/init.sql https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/init.sql;"]
+    command: ["bash", "-c", "apt-get update; apt-get install -y curl; curl -o  /tmp/vgsales.csv https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/vgsales.csv; curl -o /docker-entrypoint-initdb.d/init.sql https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/init.sql;"]
     networks:
       cloudNet:
         ipv4_address: 192.168.0.2
