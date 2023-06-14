@@ -1,10 +1,9 @@
-version: '3.8' 
+version: '3.8'
 
-services:   
+services:
   db:
     container_name: postgresDB
-    image: postgres:15.1
-    restart: always
+    image: postgres
     environment:
       POSTGRES_USER: fastAPIuser
       POSTGRES_PASSWORD: fastAPI
@@ -13,17 +12,14 @@ services:
       - '5432:5432'
     volumes:
       - ./postgres:/var/lib/postgresql/data
-      - ./scripts/vgsales.csv:/tmp/vgsales.csv
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: ["bash", "-c", "apt-get update; apt-get install curl; curl -o  /tmp/vgsales.csv https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/vgsales.csv; curl -o /docker-entrypoint-initdb.d/init.sql https://raw.githubusercontent.com/themagex1/app-cloud/master/support/scripts/init.sql;"]
     networks:
       cloudNet:
         ipv4_address: 192.168.0.2
 
   backend:
     container_name: CloudBackend
-    build: 
-      dockerfile: Dockerfile
-      context: ../backend
+    image: thegm99/support-backend
     ports:
       - 8000:8000
     environment:
@@ -37,10 +33,7 @@ services:
 
   frontend:
     container_name: CloudFrontend
-    stdin_open: true
-    build: 
-      dockerfile: Dockerfile.production
-      context: ../frontend
+    image: thegm99/support-frontend
     ports:
       - 80:80
     depends_on:
@@ -50,7 +43,7 @@ services:
     networks:
       cloudNet:
         ipv4_address: 192.168.0.4
-      
+
   adminer:
     image: adminer
     ports:
@@ -63,6 +56,7 @@ services:
 
 volumes:
   postgres:
+
 
 networks:
   cloudNet:
